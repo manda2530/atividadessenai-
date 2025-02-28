@@ -1,0 +1,43 @@
+/*
+Autor : Amanda Lima 
+Nome do arquivo: Matematica  
+Data: 26/02/2025
+Descricao: 
+*/
+
+void setup()
+{
+ Serial.begin(9600);
+  
+ float peso = 50;
+ float altura = 1.65;
+ float imc = 0.99;
+   
+ imc = peso /sq (altura);
+ Serial.println(imc);
+  
+  if (imc < 18 ){
+  Serial.println("abaixo do peso normal");
+  
+  }else if (imc >= 18.5 && imc < 24.9){
+  Serial.println("peso normal");
+    
+  }else if (imc >= 25 && imc < 29.9){
+  Serial.println("excesso de peso");
+  
+  }else if (imc >= 30 && imc < 34.9){
+   Serial.println("obesidade classe I");
+    
+  }else if (imc >= 35 && imc < 39.9){
+  Serial.println("obesidade classe II");
+    
+  }else{
+  Serial.println("obesidade classe III");
+  }
+ 
+  
+}
+
+void loop()
+{
+  

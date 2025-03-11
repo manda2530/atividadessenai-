@@ -1,0 +1,76 @@
+/*
+Autor ; Amanda Lima 
+Nome do programa: exercicio 
+Data: 06/03/2025
+Descricao : 
+*/
+
+
+#define pinLedVermelho 13
+#define pinLedLaranja 12
+#define pinLedAmarelo 11 
+#define pinLedBranco 7 
+#define pinLedVerde 6
+#define pinLedAzul 5 
+
+void setup()
+{
+ Serial.begin(9600);
+ pinMode(pinLedVermelho, OUTPUT);
+ pinMode(pinLedLaranja, OUTPUT);
+ pinMode(pinLedAmarelo, OUTPUT);
+ pinMode(pinLedBranco, OUTPUT);
+ pinMode(pinLedVerde, OUTPUT);
+ pinMode(pinLedAzul, OUTPUT ); 
+ 
+ int temperatura = 0; 
+   
+ switch ( temperatura);
+  {
+ case 0;
+ digitalWrite (pinLedVermelho, HIGH);
+ Serial.println("o ar esta pessimo");
+ break;
+     
+ case 1;
+ digitalWrite (pinLedLaranja, HIGH);
+ Serial.println("O ar esta ruin");
+ break;
+    
+ case 2
+ digitalWrite (pinLedAmarelo, HIGH);
+ Serial.println("o ar esta normal");
+ break;
+    
+ case 3:
+ digitalWrite (pinLedBranco, HIGH);
+ Serial.println("O ar esta bom");
+ break;
+    
+ case 4:
+ digitalWrite (pinLedVerde, HIGH);
+ Serial.println("o ar esta excelente");
+ break;
+    
+    
+    
+ default :
+ digitalWrite (pinLedAzul, LOW);
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  }
+}
+void loop()
+{
+  
+}

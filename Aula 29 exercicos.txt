@@ -1,0 +1,104 @@
+/*
+Autor ; Amanda Lima 
+Nome do programa:
+Data: 27/02/2025
+Descricao : resolver os exercicios 
+*/
+ //****EXERCICIO 1****
+
+#define pinLedVermelhoA 13
+#define pinLedVermelhoB 12
+#define pinLedVermelhoC 5
+void setup()
+{
+  
+ Serial.begin(9600); 
+   pinMode ( pinLedVermelhoA, OUTPUT); 
+ int temperatura = 29;
+  
+  if (temperatura >= 30){
+  digitalWrite(pinLedVermelhoA, HIGH);
+   
+}
+      //atividade 2
+   pinMode ( pinLedVermelhoB, OUTPUT);
+   int bateria = 21; 
+   if (bateria <= 20){
+   digitalWrite(pinLedVermelhoB, HIGH);
+    
+    
+  }
+  
+  //atividade 3 
+  pinMode(pinLedVermelhoC, OUTPUT);
+  int resultado = 0;
+  int numero = 0;
+  resultado = numero % 2;
+  if ( resultado == 0){
+  digitalWrite(pinLedVermelhoC, HIGH);
+    
+  }
+ 
+  //atividade 4 
+  int numeroPositivo = 8;
+  if (numeroPositivo > 0){
+  Serial.println("numero positivos");
+  } else if ( numeroPositivo < 0){
+  Serial.println("numero negativos");
+  } 
+ 
+  
+ //atividade 5 
+  int salario1 = 1000;
+ int resultado1 = 0;
+  
+ resultado1 = salario1 *10 / 100;
+ Serial.println("Nome: italo parreira ");
+ Serial.println("Cargo: diretor executivo");
+ Serial.println("Foi acrescentado em seu salario");
+ Serial.println(resultado);
+   
+ //atividade 6  
+ 
+  int salario2 = 500;
+  int resultado2 = 0;
+  
+  resultado2 = salario2 *30/100;
+  Serial.print("salario ajustado");
+  Serial.println(resultado2);
+  
+ //atividade 7 
+  
+ int valor1 = 10;
+ int valor2 = 10;
+ 
+ if (valor1 > valor2){
+ Serial.println(" valor1 eh maior que valor2");   
+ } else if ( valor2 > valor1){
+ Serial.println(" valor2 eh maior que valor1");
+   
+ //atividade 8 
+   
+ int nota1 = 10 ;
+ int nota2 = 20 ;
+ int nota3 = 30 ;
+ int nota4 = 40 ;
+ float media = 0 ;
+   
+ media = (nota1+nota2+nota3+nota4) /4.0;
+ if ( media >= 7){
+ Serial.println("aprovado");
+ }else if ( media < 7){
+ Serial.println(" reprovado");
+ }
+   
+  
+ }  
+  
+  
+  
+}
+void loop()
+{
+ 
+}

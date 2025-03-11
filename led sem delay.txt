@@ -1,0 +1,44 @@
+/*
+Autor ; Amanda Lima 
+Nome do programa:
+Data: 07/03/2025
+Descricao : fazer o led piscar sem delay
+*/
+#define pinLedVermelho 8 
+
+unsigned long tempoInicial =0;
+bool estadoLed =0;
+
+void setup()
+{
+ Serial.begin(9600);
+ pinMode (pinLedVermelho, OUTPUT); 
+}
+
+void loop()
+{
+ unsigned long tempoAtual = millis() ;
+  
+  if (tempoAtual-tempoInicial >= 1000);{
+  // caso sim
+    if ( estadoLed){
+    digitalWrite(pinLedVermelho, LOW);
+     estadoLed = 0;
+ }
+    else{
+    digitalWrite(pinLedVermelho, HIGH);
+      estadoLed = 1; {
+ }
+      tempoInicial = tempoAtual;
+  }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  }
+  

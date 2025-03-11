@@ -1,0 +1,21 @@
+/*
+Autor ; Amanda Lima 
+Nome do programa: millis 
+Data: 11/03/2025
+Descricao : contagem 
+*/
+
+
+unsigned long tempo;
+
+
+void setup()
+{
+ Serial.begin (9600); 
+}
+
+void loop()
+{
+ tempo = millis();
+ Serial.println(tempo);
+}

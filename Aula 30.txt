@@ -1,0 +1,38 @@
+/*
+Autor ; Amanda Lima 
+Nome do programa:
+Data: 06/03/2025
+Descricao : fazer um semaforo sem delay
+*/
+
+#define pinLedVermelho 13
+#define pinLedAmarelo 12
+#define pinLedVerde 11
+
+
+void setup()
+{
+ pinMode ( pinLedVermelho , OUTPUT);
+ pinMode ( pinLedAmarelo, OUTPUT);
+ pinMode ( pinLedVerde, OUTPUT);
+  
+}
+
+{
+ int escolha = 3;
+  
+ switch (escolha)
+}
+
+case 0:
+digitalWrite(pinLedVermelho, HIGH);
+break;
+
+default:
+digitalWrite (pinLedVerde, LOW);
+digitalWrite (pinLedAmarelo, LOW);
+digitalWrite (pinLedVermelho, LOW);
+
+void loop()
+{  
+}

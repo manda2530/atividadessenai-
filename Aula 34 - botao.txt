@@ -1,0 +1,40 @@
+/*
+Autor ; Amanda Lima 
+Nome do programa: botao 
+Data: 11/03/2025
+Descricao : fazer o led ligar com o botao 
+*/
+
+#define pinBotao 10
+#define pinLed 2 
+#define tempoLigado 500
+void setup()
+{
+ Serial.begin(9600);
+ pinMode (pinLed, OUTPUT);
+ pinMode(pinBotao, INPUT);
+}
+
+void loop()
+{
+  //READ -> LER
+  //WRITE -> ESCREVER
+  
+  unsigned long tempoAtual = miilis();
+  bool estadoBotao = digitalRead(pinBotao);
+  static bool estadoLed = 0;
+  static unsigned long tempoAterior = 0;
+  
+  
+  if (estadoBotao)
+  {
+  if (tempoAtual - tempoAnterior >= 100)
+  {
+  estadoLed = !estadoLed;
+  digitalWrite(pinLed, estadoLed);
+  tempoAnterior = tempoAtual;
+   }
+}
+  
+  else digitalWrite(pinLed, LOW)
+}

@@ -1,0 +1,32 @@
+/*
+Autor ; Amanda Lima 
+Nome do programa: podenciometro
+Data: 14/03/2025
+Descricao :  
+*/
+
+ void setup()
+{
+ Serial.begin (9600);
+}
+
+ void loop()
+{
+  int volume = analogRead(A0);
+ Serial.println(volume);
+   
+   
+ int  resultado = map ( volume, 0, 1023,0, 100);
+   Serial.println(resultado);
+}
+
+  // EXERCICIO 2 
+
+if (resultado >= 0) 
+{
+ Serial.print ("MUITO FRIO");
+}
+if (resultado  >=204,6) 
+{
+ Serial.print ("FRIO");
+}

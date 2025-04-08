@@ -1,0 +1,24 @@
+#include <Arduino.h>
+#include <Bounce2.h>
+#define pinBoot 5
+#define pinBotaoA 19
+#define pinBotaoB 21
+
+//* Instancias
+Bounce botaoBoot = Bounce();
+Bounce botaoA = Bounce();
+Bounce botaoB = Bounce();
+
+void setup()
+{
+  botaoBoot.attach(pinBoot, INPUT_PULLUP);
+  botaoA.attach(pinBotaoA, INPUT_PULLUP);
+  botaoB.attach(pinBotaoB, INPUT_PULLUP);
+}
+
+void loop()
+{
+  Serial.begin(9600);
+  botaoBoot.update();
+  botaoA.update();
+  botaoB.update();

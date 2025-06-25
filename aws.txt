@@ -1,0 +1,25 @@
+timer.h 
+
+#ifndef TEMPORIZADOR_H
+#define TEMPORIZADOR_H
+
+#include <Arduino.h>
+
+class Temporizador {
+  private:
+    unsigned long intervalo;
+    unsigned long inicio;
+    bool ativo;
+
+  public:
+    Temporizador(unsigned long tempo_ms = 1000);
+
+    void iniciar();
+    void parar();
+    bool estaPronto();
+    void reiniciar();
+    bool estaAtivo();
+    void definirIntervalo(unsigned long tempo_ms);
+};
+
+#endif

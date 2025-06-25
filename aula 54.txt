@@ -1,0 +1,184 @@
+#include <Arduino.h>
+#include <Bounce2.h>
+#include <LiquidCrystal_I2C.h>
+
+#define botaoA 3
+#define botaoB 5
+#define botaoC 6
+# define LedA 
+// instancia de objeto
+Bounce botao1 = Bounce();
+Bounce botao2 = Bounce();
+Bounce botao3 = Bounce();
+
+LiquidCrystal_I2C lcd(0x27, 20, 4);
+
+void setup()
+{
+    Serial.begin(9600);
+    botao1.attach(botaoA, INPUT_PULLUP);
+    botao2.attach(botaoB, INPUT_PULLUP);
+    botao3.attach(botaoC, INPUT_PULLUP);
+
+    lcd.init();
+    lcd.backlight();
+    lcd.setCursor(0, 0);
+    lcd.print(">LED 1 - 0% ");
+    lcd.setCursor(0, 1);
+    lcd.print(" LED 2 - 0% ");
+    lcd.setCursor(0, 2);
+    lcd.print(" LED 3 - 0% ");
+    lcd.setCursor(0, 3);
+    lcd.print(" LED 4 - 0% ");
+}
+
+void loop()
+{
+    static bool modoSelecao = 1;
+    static int contador = 0;
+    static int itnsLedA = 0;
+    static int itnsLedB = 0;
+    static int itnsLedC = 0;
+    static int itnsLedD = 0;
+
+    botao1.update();
+    botao2.update();
+    botao3.update();
+
+    // botao C
+    if (botao3.fell())
+    {
+        modoSelecao = !modoSelecao;
+    }
+    // botao B
+    if (botao2.fell())
+    {
+        if (modoSelecao) // == true
+        {
+            contador++;
+            contador += 2;
+
+            if (contador > 3)
+            {
+                contador = 0;
+            }
+        }
+        else
+        {
+            switch (contador)
+            {
+
+            case 0:
+                if (itnsLedA > 0)
+                    itnsLedA -= 10;
+
+                break;
+            case 1:
+                if (itnsLedB > 0)
+                    itnsLedB -= 10;
+
+                break;
+            case 2:
+                if (itnsLedC > 0)
+                    itnsLedC -= 10;
+
+                break;
+            case 3:
+                if (itnsLedD > 0)
+                    itnsLedD -= 10;
+
+                break;
+
+            default:
+                break;
+            }
+        }
+    }
+    // botao A
+    if (botao1.fell())
+
+    {
+        if (modoSelecao) // == true
+        {
+            contador--;
+
+            if (contador > 0)
+            {
+                contador = 3;
+            }
+        }
+
+        else
+        {
+            switch (contador)
+            {
+
+            case 0:
+                if (itnsLedA < 90)
+                    itnsLedA += 10;
+
+                break;
+            case 1:
+                if (itnsLedB < 90)
+                    itnsLedB += 10;
+
+                break;
+            case 2:
+                if (itnsLedC < 90)
+                    itnsLedC += 10;
+
+                break;
+            case 3:
+                if (itnsLedD < 90)
+                    itnsLedD += 10;
+
+                break;
+
+            default:
+                break;
+            }
+        }
+    }
+
+    // LCD
+    if (contador == 0)
+    {
+        lcd.setCursor(0, 0);
+        lcd.print(">");
+
+        lcd.setCursor(0, 1);
+        lcd.print(" ");
+        lcd.setCursor(0, 3);
+        lcd.print(" ");
+    }
+    else if (contador == 1)
+    {
+        lcd.setCursor(0, 1);
+        lcd.print(">");
+
+        lcd.setCursor(0, 0);
+        lcd.print(" ");
+        lcd.setCursor(0, 2);
+        lcd.print(" ");
+    }
+    else if (contador == 2)
+    {
+        lcd.setCursor(0, 2);
+        lcd.print(">");
+
+        lcd.setCursor(0, 1);
+        lcd.print(" ");
+        lcd.setCursor(0, 3);
+        lcd.print(" ");
+    }
+    else // e 3
+    {
+        lcd.setCursor(0, 3);
+        lcd.print(">");
+
+        lcd.setCursor(0, 2);
+        lcd.print(" ");
+        lcd.setCursor(0, 0);
+        lcd.print(" ");
+    }
+}

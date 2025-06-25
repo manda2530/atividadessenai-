@@ -1,0 +1,58 @@
+#include <Arduino.h>
+#include <BluetoothSerial.h>
+
+BluetoothSerial BT;
+
+uint8_t endSlave[] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+
+void setup()
+{
+  Serial.begin(9600);
+
+  //!                          ↓ indica que e master  // alt 25
+  if (BT.begin("EspAmandinha", true)) // inicia a comunicacao no bluetooth
+  {
+    Serial.println("Bluetooth iniciado com sucesso");
+  }
+
+  else
+  {
+    Serial.println("Erro ao iniciar o bluetooth");
+  }
+
+ if (BT.connect(endSlave) ) // conecta o endereco no dispositivo 
+ {
+  Serial.println("Conectado com sucesso");
+ }
+ else 
+ {
+  Serial.println("Nao foi possivel conectar o dispositivo Bluetooth");
+ }
+
+  // Serial.println(BT.getBtAddressString());
+}
+
+void loop()
+{
+  if(Serial.available())
+  {
+    String mensagemEnviar = Serial.readStringUntil('\n');
+    mensagemEnviar.trim();
+    BT.println(mensagemEnviar);
+  }
+   if (BT.available())
+   {
+    String mensagemRecebida = BT.readStringUntil('\n');
+    mensagemRecebida.trim();
+    Serial.println("Mensagem recebida:" + mensagemRecebida);
+
+    if(mensagemRecebida.equals("liga"))
+    {
+
+    }
+    else if (mensagemRecebida.equals("desliga"))
+    {
+      
+    }
+   }
+}

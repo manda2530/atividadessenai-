@@ -1,0 +1,94 @@
+#include <Arduino.h>                // inclui o arduino
+#include <LiquidCrystal_I2C.h>      // inclui o lcd
+#define pinLed 2                    // define o pino do led
+#define pinBotao 5                  // define o pino do botao
+LiquidCrystal_I2C lcd(0x27, 20, 4); // define lcd
+
+byte pac[] = { // cria figuras
+    B00000,
+    B11111,
+    B10101,
+    B11111,
+    B11111,
+    B11111,
+    B01010,
+    B11011};
+
+byte pac2[] = { // cria figuras
+    B00000,
+    B11111,
+    B10101,
+    B11111,
+    B11000,
+    B11111,
+    B01010,
+    B11011,
+
+};
+
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(pinLed, OUTPUT);  // define entrada/saida
+  pinMode(pinBotao, INPUT); // define entrada/saida
+  lcd.init();               // inicia o lcd
+  lcd.createChar(0, pac);   // criar caracteres personalizados para serem exibidos.
+  lcd.createChar(1, pac2);  // criar caracteres personalizados para serem exibidos
+  lcd.backlight();          // liga a luz de fundo do lcd
+
+  lcd.setCursor(1, 0); // define linha e coluna do lcd
+  lcd.begin(1, 0);     // ; configura o número de linhas
+  lcd.write(0);        // mostra figuras
+
+  lcd.setCursor(1, 0); // define linha e coluna do lcd
+  lcd.begin(1, 0);     //; configura o número de linhas
+  lcd.write(0);        // mostra figuras
+
+  for (int x = 1; x < 20; x++) // thiago que fez
+  {
+
+    lcd.setCursor(x, 0); // define linha e coluna do lcd
+    lcd.print(".");      // mostra no lcd
+  }
+}
+
+void loop() // repete o codigo infinitamente
+{
+
+  // VARIAVEIS
+
+  bool estadoAtualBotao = digitalRead(pinBotao); // criando variavel e armazenando a leitura do botao
+  static bool estadoAnteriorBotao = 0;           // variavel do botao
+  static bool estadoLed = 0;                     // variavel do led
+  static int posicao = 0;                        // variavel da posicao pacman
+
+  // FAz O BICHINHO ANDAR
+
+  if (estadoAtualBotao == 1 && estadoAnteriorBotao == 0) // Comparacao do estadoAtual do Botao com o estado Anterior
+  {
+    lcd.setCursor(posicao, 0); // define linha e coluna do lcd
+    lcd.print(" ");            // mostra no lcd
+
+    posicao++;
+    lcd.setCursor(posicao, 0); // define linha e coluna do lcd
+    lcd.write(0);              // mostra figuras
+
+    // VOLTA O BICHINHO PRO COMECO
+
+    if (posicao == 19) // se a posicao for igual a 19 a posicao volta a 0
+    {
+      posicao = 0;
+      for (int x = 1; x < 20; x++) // thiago que fez
+      {
+        lcd.setCursor(x, 0); // define linha e coluna do lcd
+        lcd.print(".");      // mostra no lcd
+      }
+    }
+
+    /// LIGA O LED
+
+    estadoLed = !estadoLed;          // alterna o estado do led
+    digitalWrite(pinLed, estadoLed); // armazena a leitura do ledd
+  }
+  estadoAnteriorBotao = estadoAtualBotao; // Compara o estadoAnterior do Botao com o estadoAtual
+}

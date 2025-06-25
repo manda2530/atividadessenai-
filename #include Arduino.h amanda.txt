@@ -1,0 +1,58 @@
+#include <Arduino.h>
+#include <LiquidCrystal_I2C.h>
+#include <Bounce2.h>
+
+#define BotaoB 12
+#define BotaoD 27
+LiquidCrystal_I2C lcd(0x27, 20, 4);
+
+Bounce botaoB = Bounce();
+Bounce botaoD = Bounce();
+
+byte seta1[] = {
+    B00000,
+    B00000,
+    B00100,
+    B00010,
+    B11111,
+    B00010,
+    B00100,
+    B00000};
+
+byte seta2[] = {
+    B00000,
+    B00000,
+    B00100,
+    B01000,
+    B11111,
+    B01000,
+    B00100,
+    B00000};
+
+void setup()
+{
+    Serial.begin(9600);
+
+    pinMode(BotaoB, INPUT);
+    pinMode(BotaoD, INPUT);
+
+    lcd.init();
+    lcd.createChar(0, seta1);
+    lcd.createChar(1, seta2);
+    lcd.backlight();
+
+    lcd.setCursor(2, 0);
+    lcd.write(1);
+
+    lcd.setCursor(17, 0);
+    lcd.write(0);
+
+    
+}
+
+void loop()
+{
+    bool estadoAtualBotao = digitalRead(BotaoB); 
+    static bool estadoAnteriorBotao = 0;         
+    static int posicao = 0;
+}
